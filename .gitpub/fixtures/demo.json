@@ -1,0 +1,60 @@
+{
+  "repository": "example/notebook",
+  "issues": [
+    {
+      "number": 3,
+      "title": "A little corner of the internet",
+      "body": "## A notebook with the door open\n\nA place to collect **small ideas**, share what you are learning, and leave room for a conversation.\n\n- Write something\n- Make it yours\n- Keep it yours\n\n> A small start is still a start.",
+      "labels": [],
+      "created_at": "2026-11-07T08:00:00Z",
+      "updated_at": "2026-11-07T10:00:00Z",
+      "comments": 1,
+      "commentsData": [
+        {
+          "user": {
+            "login": "example-reader"
+          },
+          "body": "Here is to more little corners of the internet."
+        }
+      ],
+      "author_association": "OWNER",
+      "user": {
+        "login": "example"
+      }
+    },
+    {
+      "number": 2,
+      "title": "یک صبح آرام",
+      "body": "## فرصتی برای فکر کردن\n\nگاهی یک **فکر کوچک** شروع یک نوشته است.\n\nاین گوشهٔ اینترنت برای همین فکرهای کوچک است.",
+      "labels": [
+        {
+          "name": "Personal"
+        }
+      ],
+      "created_at": "2026-11-06T08:00:00Z",
+      "updated_at": "2026-11-06T08:00:00Z",
+      "comments": 0,
+      "author_association": "OWNER",
+      "user": {
+        "login": "example"
+      }
+    },
+    {
+      "number": 1,
+      "title": "PRIVATE DRAFT DO NOT PUBLISH",
+      "body": "Private draft body",
+      "labels": [
+        {
+          "name": "draft"
+        }
+      ],
+      "created_at": "2026-11-05T08:00:00Z",
+      "updated_at": "2026-11-05T08:00:00Z",
+      "comments": 0,
+      "author_association": "OWNER",
+      "user": {
+        "login": "example"
+      }
+    }
+  ]
+}

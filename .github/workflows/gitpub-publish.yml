@@ -1,0 +1,76 @@
+name: Publish Gitpub blog
+run-name: Gitpub ${{ inputs.request_id || github.run_id }}
+on:
+  workflow_dispatch:
+    inputs:
+      request_id:
+        description: Publishing request
+        required: false
+        type: string
+  push:
+  issues:
+    types:
+      [
+        opened,
+        edited,
+        deleted,
+        labeled,
+        unlabeled,
+        closed,
+        reopened,
+        transferred,
+      ]
+  issue_comment:
+    types: [created, edited, deleted]
+permissions: {}
+concurrency:
+  group: gitpub-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    if: (github.event_name != 'push' || github.ref_name == github.event.repository.default_branch) && (github.event_name != 'issue_comment' || !github.event.issue.pull_request)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: .gitpub
+    permissions:
+      contents: read
+      issues: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - uses: actions/configure-pages@v5
+        id: pages
+      - run: pnpm build
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .gitpub/_site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

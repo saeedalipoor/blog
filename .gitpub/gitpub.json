@@ -1,0 +1,17 @@
+{
+  "title": "Saeed",
+  "description": "",
+  "author": "Saeed Alipoor",
+  "slug": "saeed",
+  "language": "fa",
+  "theme": "paper",
+  "accent": "sage",
+  "font": "serif",
+  "width": "comfortable",
+  "ownership": "managed",
+  "includeComments": true,
+  "trustedAuthors": [
+    "saeedalipoor"
+  ],
+  "publicURL": "https://gitpub.net/@saeed/"
+}
